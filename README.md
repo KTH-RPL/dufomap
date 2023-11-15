@@ -1,7 +1,7 @@
 DUFOMap
 ---
 
-DUFOMap is under review, codes will be public after the paper's acceptance.
+DUFOMap is under review, codes will be public after the paper's acceptance. Stay tuned with us! 😊
 
 ![](assets/imgs/dufomap_leica.gif)
 
