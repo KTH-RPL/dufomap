@@ -2,7 +2,7 @@ DUFOMap
 ---
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b.svg)](https://arxiv.org/abs/2403.01449) [![page](https://img.shields.io/badge/Web-Page-green)](https://kin-zhang.github.io/dufomap)
 
-DUFOMap is under review, codes will be public only after the paper's acceptance. Stay tuned with us! 😊
+DUFOMap is under review, codes will be public only after the paper's acceptance. Stay tuned with us! 😊 [link to the benchmark and datasets used in the paper](https://github.com/KTH-RPL/DynamicMap_Benchmark)
 
 ![](assets/imgs/dufomap_leica.gif)
 
