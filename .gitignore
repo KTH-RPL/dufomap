@@ -30,3 +30,21 @@
 *.exe
 *.out
 *.app
+
+# VS Code
+.vscode/*
+
+# CLion
+.idea/*
+
+# Tests
+ufomap_tests/*
+
+# Build folder
+build/*
+
+# Cache folder
+.cache/*
+
+# Data folder
+data/*
