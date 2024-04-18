@@ -71,7 +71,7 @@ Thanks to HKUST Ramlab's members: Bowen Yang, Lu Gan, Mingkai Tang, and Yingbing
 
 This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program ([WASP](https://wasp-sweden.org/)) funded by the Knut and Alice Wallenberg Foundation
 
-The original DUFOMap code is from the fork repo: (https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap)[https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap] as it based on ufomap structure. Feel free to explore link projects use ufomap (code links as follows):
+The original DUFOMap code is from the fork repo: [https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap) as it based on ufomap structure. Feel free to explore link projects use ufomap (code links as follows):
 - [RA-L'24 DUFOMap, Dynamic Awareness]()
 - [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
 - [RA-L'20 UFOMap, map framework](https://github.com/UnknownFreeOccupied/ufomap)
