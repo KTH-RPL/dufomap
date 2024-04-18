@@ -37,9 +37,9 @@
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
                     <li>
-                        <!-- <a href="TODO"> -->
+                        <a href="https://www.kth.se/profile/dduberg">
                         Daniel Duberg* <sup>1</sup>
-                        <!-- </a> -->
+                        </a>
                     </li>
                     <li>
                         <a href="https://kin-zhang.github.io/">
@@ -63,9 +63,8 @@
         <div class="row" id="affiliated">
             <div class="col-md-12 text-center">
                 <p>
-                    <sup>*</sup>Equal contribution
-                    <br>
-                    <sup>1</sup>KTH Royal Institute of Technology, <sup>2</sup>HKUST
+                    <sup>*</sup>Co-first authors&emsp;<sup>1</sup>KTH Royal Institute of Technology &emsp;<sup>2</sup>HKUST
+                    
                 </p>
             </div>
         </div>
@@ -75,17 +74,17 @@
                 <!-- <div class="col-md-4 col-md-offset-4 text-center"></div> (for 3 icons)-->
                 <ul class="nav nav-pills nav-justified">
                     <li>
-                        <a href="https://arxiv.org/abs/TODO.TODO">
+                        <a href="https://arxiv.org/abs/2403.01449">
                             <img src="./resources/imgs/paper_cover.png" height="60px">
                             <h4><strong>Paper</strong></h4>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="https://youtu.be/TODO">
                             <img src="./resources/imgs/icons/youtube.png" height="60px">
                             <h4><strong>Video</strong></h4>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="https://github.com/KTH-RPL/DynamicMap_Benchmark#dataset--scripts">
                             <img src="./resources/imgs/icons/dataset.png" height="60px">
@@ -95,7 +94,7 @@
                     <li>
                         <a href="https://github.com/kth-rpl/dufomap">
                             <img src="./resources/imgs/icons/github.png" height="60px">
-                            <h4><strong>Release after acceptance</strong></h4>
+                            <h4><strong>Code</strong></h4>
                         </a>
                     </li>
                 </ul>
@@ -116,7 +115,7 @@
                 Abstract
             </h3>
             <p class="text-justify">
-                The dynamic nature of the real world is one of the main challenges in robotics. The first step in dealing with it is to detect which parts of the world are dynamic. A typical benchmark task is to create a map that contains only the static part of the world to support, for example, localization and planning. Current solutions are often applied in post-processing, where parameter tuning allows the user to adjust the setting for a specific dataset. In this paper, we propose DUFOMap, a novel dynamic awareness mapping framework designed for efficient online processing. Despite having the same parameter settings for all scenarios, it performs better or is on par with state-of-the-art methods. Ray casting is utilized to identify and classify fully observed empty regions. Since these regions have been observed empty, it follows that anything inside them at another time must be dynamic. Evaluation is carried out in various scenarios, including outdoor environments in KITTI and Argoverse 2, open areas on the KTH campus, and with different sensor types. DUFOMap outperforms the state of the art in terms of accuracy and computational efficiency. The source code, benchmarks, and links to the datasets utilized are provided.
+                The dynamic nature of the real world is one of the main challenges in robotics. The first step in dealing with it is to detect which parts of the world are dynamic. A typical benchmark task is to create a map that contains only the static part of the world to support, for example, localization and planning. Current solutions are often applied in post-processing, where parameter tuning allows the user to adjust the setting for a specific dataset. In this paper, we propose DUFOMap, a novel dynamic awareness mapping framework designed for efficient online processing. Despite having the same parameter settings for all scenarios, it performs better or is on par with state-of-the-art methods. Ray casting is utilized to identify and classify fully observed empty regions. Since these regions have been observed empty, it follows that anything inside them at another time must be dynamic. Evaluation is carried out in various scenarios, including outdoor environments in KITTI and Argoverse 2, open areas on the KTH campus, and with different sensor types. DUFOMap outperforms the state of the art in terms of accuracy and computational efficiency.
             </p>
             <!-- <p class="text-center">
                 <img src="./resources/imgs/pipeline.png" class="center">
@@ -164,38 +163,21 @@
         <div class="col-md-10 col-md-offset-1"  id="video-demo">
             <h3>Interactive demo in KITTI 07 sequence (full map). Try yourself 😊 </h3>
             <div class="cocoen" style="width: 100%;">
-            <video id="video-player1a" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+            <video id="video-player1" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
                 <source id="video-src1" src="./resources/videos/07_gt.mp4">
             </video>
-            <video id="video-player2a" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+            <video id="video-player2" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
                 <source id="video-src2" src="./resources/videos/07_dufomap.mp4">
             </video>
             </div>
-            <input id="progress-bar-a" type="range" min="0" max="100" step="1" value="0">
-            <button id="pause-play-button-a">Play</button>
+            <input id="progress-bar" type="range" min="0" max="100" step="1" value="0">
+            <button id="pause-play-button">Play</button>
             <p style="text-align: center;">Slide the bar to compare</p>
             <p style="text-align: left;">
                 Left: A map built using ground truth labels (dynamic points marked in yellow). <br>
                 Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.</p>
     </div>
-    <!-- <div class="container">
-        <div class="col-md-10 col-md-offset-1"  id="video-demo">
-            <h3>Interactive demo in KITTI 07 sequence (full map). Try yourself 😊 </h3>
-            <div class="cocoen" style="width: 100%;">
-            <video id="video-player1b" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
-                <source id="video-src3" src="./resources/videos/mid360_raw.mp4">
-            </video>
-            <video id="video-player2b" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
-                <source id="video-src4" src="./resources/videos/mid360_dufo.mp4">
-            </video>
-            </div>
-            <input id="progress-bar-b" type="range" min="0" max="100" step="1" value="0">
-            <button id="pause-play-button-b">Play</button>
-            <p style="text-align: center;">Slide the bar to compare</p>
-            <p style="text-align: left;">
-                Left: A map built using ground truth labels (dynamic points marked in yellow). <br>
-                Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.</p>
-    </div> -->
+
     <div class="col-md-10 col-md-offset-1">
         <h3>
             Section I-C: DUFOMap Ablation Study in RGB-D dataset
@@ -281,41 +263,36 @@
         <script>
         Cocoen.parse(document.body);
         </script>
-
         <script>
-            function setupVideoPlayers(videoId1, videoId2, progressBarId, buttonId) {
-                var video1 = document.getElementById(videoId1);
-                var video2 = document.getElementById(videoId2);
-                var progressBar = document.getElementById(progressBarId);
-                var pausePlayButton = document.getElementById(buttonId);
+            var video = document.getElementById('video-player1');
+            var video2 = document.getElementById('video-player2');
+            var progressBar = document.getElementById('progress-bar');
+            var pausePlayButton = document.getElementById('pause-play-button');
 
-                video1.addEventListener('loadedmetadata', function() {
-                    progressBar.max = video1.duration;
-                });
+            video.addEventListener('loadedmetadata', function() {
+                progressBar.max = video.duration;
+            });
 
-                video1.addEventListener('timeupdate', function() {
-                    progressBar.value = video1.currentTime;
-                });
+            video.addEventListener('timeupdate', function() {
+                progressBar.value = video.currentTime;
+            });
 
-                progressBar.addEventListener('input', function() {
-                    video1.currentTime = progressBar.value;
-                    video2.currentTime = progressBar.value;
-                });
+            progressBar.addEventListener('input', function() {
+                video.currentTime = progressBar.value;
+                video2.currentTime = progressBar.value;
+            });
 
-                pausePlayButton.addEventListener('click', function() {
-                    if (video1.paused) {
-                        video1.play();
-                        video2.play();
-                        pausePlayButton.textContent = "Pause";
-                    } else {
-                        video1.pause();
-                        video2.pause();
-                        pausePlayButton.textContent = "Play";
-                    }
-                });
-            }
-            setupVideoPlayers('video-player1a', 'video-player2a', 'progress-bar-a', 'pause-play-button-a');
-            setupVideoPlayers('video-player1b', 'video-player2b', 'progress-bar-b', 'pause-play-button-b');
+            pausePlayButton.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                    video2.play();
+                    pausePlayButton.textContent = "Pause";
+                } else {
+                    video.pause();
+                    video2.pause();
+                    pausePlayButton.textContent = "Play";
+                }
+            });
         </script>
     </div>
 
@@ -326,8 +303,7 @@
         <hr><br>
     </div> -->
     <div id="divCheckbox" style="display: none;">
-        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=agMKxP88T4oPBUQf-tEi1jJvvgJ9YOvOwHxoiZWvaw4&cl=ffffff&w=a"></script>
-        <!-- <li>Open view&ensp;<a href="http://www.clustrmaps.com/map/Kin-zhang.github.io" title="Visit tracker for Kin-zhang.github.io">Map Viewer</a></li> -->
+        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=EgneqgMyKYunbNXTZBSJLu9hx5BwVR4-wMDgDP789vg&cl=ffffff&w=a"></script>
     </div>
 </body>
 
