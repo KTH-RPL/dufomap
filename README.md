@@ -1,18 +1,17 @@
-<br />
 <p align="center">
   <h2 align="center">DUFOMap: Efficient Dynamic Awareness Mapping</h1>
   <p align="center">
-    <strong>Daniel Duberg</strong><sup>1,*</sup>&nbsp;&nbsp;&nbsp;
-    <strong>Qingwen Zhang</strong><sup>1,*</sup>&nbsp;&nbsp;&nbsp;
-    <strong>Mingkai Jia</strong><sup>2</sup>&nbsp;&nbsp;&nbsp;
-    <strong>Patric Jensfelt</strong><sup>1</sup>&nbsp;&nbsp;&nbsp;
+    <a href="https://www.kth.se/profile/dduberg"><strong>Daniel Duberg</strong><sup>1,*</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://kin-zhang.github.io"><strong>Qingwen Zhang</strong><sup>1,*</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/MKJia"><strong>Mingkai Jia</strong><sup>2</sup></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://www.kth.se/profile/patric"><strong>Patric Jensfelt</strong><sup>1</sup></a>&nbsp;&nbsp;&nbsp;
     <br />
-    <sup>*</sup><strong>Co-first author</strong>,&nbsp;&nbsp;&nbsp; <strong>KTH</strong><sup>1</sup>&nbsp;&nbsp;&nbsp; <strong>HKUST</strong><sup>2</sup>&nbsp;&nbsp;&nbsp;
+    <sup>*</sup><strong>Co-first author</strong>&nbsp;&nbsp;&nbsp; <sup>1</sup><strong>KTH</strong>&nbsp;&nbsp;&nbsp; <sup>2</sup><strong>HKUST</strong>&nbsp;&nbsp;&nbsp;
   </p>
 </p>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2403.01449)
-[![page](https://img.shields.io/badge/Web-Page-green)](https://KTH-RPL.github.io/dufomap) [video coming soon] [poster coming soon]
+[![page](https://img.shields.io/badge/Web-Page-green)](https://KTH-RPL.github.io/dufomap) [video coming soon] [poster coming soon]. Accepted by RA-L'24.
 
 Quick Demo: Run with the **same parameter setting** without tuning for different sensor (e.g 16, 32, 64, and 128 channel LiDAR and Livox-series mid360), the following shows the data collected from: Leica-RTC360, 128-channel LiDAR and Livox-mid360 effect.
 
@@ -41,9 +40,7 @@ Build:
 cmake -B build -D CMAKE_CXX_COMPILER=g++-10 && cmake --build build
 ```
 
-Prepare Data:
-
-Teaser data (KITTI 00: 384.4Mb), more data detail can be found in the [Dataset Section](https://github.com/KTH-RPL/DynamicMap_Benchmark?tab=readme-ov-file#dataset--scripts).
+Prepare Data: Teaser data (KITTI 00: 384.4Mb) can be downloaded via follow commands, more data detail can be found in the [dataset section](https://github.com/KTH-RPL/DynamicMap_Benchmark?tab=readme-ov-file#dataset--scripts) or format your own dataset follow [custom dataset section](https://github.com/KTH-RPL/DynamicMap_Benchmark/blob/master/scripts/README.md#custom-dataset).
 
 ```bash
 wget https://zenodo.org/records/8160051/files/00.zip
@@ -71,27 +68,23 @@ Thanks to HKUST Ramlab's members: Bowen Yang, Lu Gan, Mingkai Tang, and Yingbing
 
 This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program ([WASP](https://wasp-sweden.org/)) funded by the Knut and Alice Wallenberg Foundation
 
-The original DUFOMap code is from the fork repo: [https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap) as it based on ufomap structure. Feel free to explore link projects use ufomap (code links as follows):
+The original DUFOMap code is from the fork repo: [https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap) as it based on ufomap structure. 
+Feel free to explore link projects use [ufomap](https://github.com/UnknownFreeOccupied/ufomap) (code links as follows):
 - [RA-L'24 DUFOMap, Dynamic Awareness]()
 - [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
-- [RA-L'20 UFOMap, map framework](https://github.com/UnknownFreeOccupied/ufomap)
+- [RA-L'20 UFOMap, Map Framework](https://github.com/UnknownFreeOccupied/ufomap)
 
-### Cite Our Paper
+### Cite our works
 
-Please cite our work if you find these useful for your research.
+Please cite our works if you find these useful for your research.
 
-DUFOMap:
 ```
 @article{daniel2024dufomap,
-    author    = {Daniel, Duberg and Zhang, Qingwen and Jia, Mingkai and Jensfelt, Patric},
+    author    = {Duberg, Daniel and Zhang, Qingwen and Jia, Mingkai and Jensfelt, Patric},
     title     = {DUFOMap: Efficient Dynamic Awareness Mapping},
     journal   = {arXiv preprint arXiv:2403.01449},
     year      = {2024},
 }
-```
-
-Benchmark:
-```
 @inproceedings{zhang2023benchmark,
   author={Zhang, Qingwen and Duberg, Daniel and Geng, Ruoyu and Jia, Mingkai and Wang, Lujia and Jensfelt, Patric},
   booktitle={IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)}, 
