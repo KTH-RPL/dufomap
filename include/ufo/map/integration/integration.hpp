@@ -178,15 +178,16 @@ void insertPointCloud(Map& map, Cloud<P...> points, Point sensor_origin,
 template <class Map, class... P>
 void insertPointCloud(Map& map, Cloud<P...> points, Point sensor_origin,
                       Pose6f frame_origin, IntegrationParams const& params,
-                      bool propagate = true)
+                      bool propagate = true, bool need_transform = false)
 {
 #ifdef UFO_PARALLEL
-	if (params.parallel) {
+	if (params.parallel && need_transform) {
 		applyTransform(std::execution::par_unseq, points, frame_origin);
 	} else
 #endif
 	{
-		applyTransform(points, frame_origin);
+		if (need_transform)
+			applyTransform(points, frame_origin);
 	}
 
 	// FIXME: What is correct?

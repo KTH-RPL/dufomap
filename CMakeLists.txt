@@ -1,69 +1,29 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(ufomap
-	VERSION 2.0.0
-	DESCRIPTION "UFOMap: An Efficient Probabilistic 3D Mapping Framework That Embraces the Unknown"
+project(dufomap
+	VERSION 1.0.0
+	DESCRIPTION "DUFOMap: Efficient Dynamic Awareness Mapping"
 	LANGUAGES CXX
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 set(default_build_type "Release")
-
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 	message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
 	set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE
 		STRING "Choose the type of build." FORCE)
-
 	# Set the possible values of build type for cmake-gui
 	set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
 		"Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-# Maybe remove this under
-# IF (CMAKE_COMPILER_IS_GNUCC)
-# SET (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wno-error")
-# SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-error -Wpedantic -march=native")
-# SET (CMAKE_CXX_FLAGS_RELEASE "-O3 -funroll-loops -DNDEBUG")
-# SET (CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-# # Shared object compilation under 64bit (vtable)
-# ADD_DEFINITIONS(-fPIC)
-# ENDIF()
-
-# Only do these if this is the main project, and not if it is included through add_subdirectory
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-	# Support folders in IDE's
-	set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-	# Should this be here?
-	# set(MODERN_CMAKE_BUILD_TESTING ON)
-	include(CTest)
-
-	find_package(Doxygen)
-
-	if(Doxygen_FOUND)
-		add_subdirectory(docs)
-	else()
-		message(STATUS "Doxygen not found, not building docs")
-	endif()
-endif()
-
-# To make headers show up in IDEs
-set(HEADER_LIST
-
-	# "${PROJECT_SOURCE_DIR}/include/ufo/geometry/aabb.h"
-)
-
-set(SRC_LIST
-	"${PROJECT_SOURCE_DIR}/src/map/io.cpp"
-)
+set(SRC_LIST "${PROJECT_SOURCE_DIR}/src/map/io.cpp")
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LZ4 REQUIRED liblz4)
 pkg_check_modules(LZF REQUIRED liblzf)
 
 find_package(OpenMP)
-
 add_library(Map SHARED ${SRC_LIST} ${HEADER_LIST})
 add_library(UFO::Map ALIAS Map)
 
@@ -151,32 +111,6 @@ target_compile_options(dufomap
 	# -march=native
 )
 
-add_executable(fix_pcd src/fix_pcd.cpp)
-set_target_properties(fix_pcd
-	PROPERTIES
-	VERSION ${PROJECT_VERSION}
-	SOVERSION ${PROJECT_VERSION_MAJOR}
-	CXX_STANDARD 20
-	CXX_STANDARD_REQUIRED YES
-	CXX_EXTENSIONS NO
-)
-target_link_libraries(fix_pcd PRIVATE UFO::Map)
-target_compile_features(fix_pcd
-	PUBLIC
-	cxx_std_20
-)
-
-IF(TBB_FOUND)
-	message(STATUS "TBB found, enabling parallel execution")
-	target_compile_definitions(fix_pcd
-		INTERFACE
-		UFO_PARALLEL=1
-	)
-	target_link_libraries(fix_pcd
-		PUBLIC
-		TBB::tbb
-	)
-ENDIF()
 
 set(UFOMAP_BMI2 FALSE CACHE BOOL "Enable/disable BMI2 instructions")
 

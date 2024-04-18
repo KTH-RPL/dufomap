@@ -338,9 +338,7 @@ int main(int argc, char* argv[])
 	std::filesystem::path path(argv[1]);
 
 	auto config = readConfig(path);
-
-	// ufo::Map<ufo::MapType::FREE | ufo::MapType::COLOR | ufo::MapType::COUNT |
-	//          ufo::MapType::LABEL>
+	std::cout << "Successfully read configuration.\n";
 	ufo::Map<ufo::MapType::SEEN_FREE | ufo::MapType::REFLECTION | ufo::MapType::LABEL> map(
 	    config.map.resolution, config.map.levels);
 	map.reserve(100'000'000);
@@ -364,6 +362,7 @@ int main(int argc, char* argv[])
 
 	ufo::PointCloudColor cloud_acc;
 
+	std::cout << "Starting Processing data from: " << path << '\n';
 	for (std::size_t i{}; std::string filename : pcds) {
 		++i;
 		timing.setTag("Total " + std::to_string(i) + " of " + std::to_string(pcds.size()) +
@@ -399,59 +398,19 @@ int main(int argc, char* argv[])
 	timing[4].stop();
 
 	timing[5].start("Query");
-	ufo::PointCloudColor                                         cloud_static;
-	ufo::PointCloudColor                                         cloud_dynamic;
-	ufo::PointCloudColor                                         cloud_raycasting;
-	ufo::Cloud<ufo::Point, ufo::Color, ufo::Dynamic, ufo::Label> cloud_everything;
-	cloud_everything.reserve(cloud_acc.size());
+	ufo::PointCloudColor cloud_static;
 
 	for (auto& p : cloud_acc) {
-		auto node = map.index(p);
-		cloud_everything.emplace_back(p, p, map.seenFree(node), map.label(node));
-		if (!config.clustering.cluster) {
-			cloud_everything.back().label = cloud_everything.back().dynamic;
-		}
-		if (cloud_everything.back().dynamic) {
-			cloud_dynamic.push_back(p);
-		} else {
+		if (!map.seenFree(p))
 			cloud_static.push_back(p);
-		}
 	}
 
-	// for (auto node : map.query(ufo::pred::Leaf())) {
-	// 	if (map.seenFree(node.index())) {
-	// 		acc_cloud.emplace_back(map.center(node), 0, 0,
-	// 		                       std::numeric_limits<ufo::color_t>::max());
-	// 	}
-	// }
 	timing[5].stop();
 
 	timing[6].start("write");
-	std::array f = {
-	    std::async(std::launch::async,
-	               [&] {
-		               ufo::writePointCloudPCD(path / (config.output.filename + ".pcd"),
-		                                       cloud_everything);
-	               }),
-	    std::async(std::launch::async,
-	               [&] {
-		               ufo::writePointCloudPCD(
-		                   path / (config.output.filename + "_static.pcd"), cloud_static);
-	               }),
-	    std::async(std::launch::async,
-	               [&] {
-		               ufo::writePointCloudPCD(
-		                   path / (config.output.filename + "_dynamic.pcd"), cloud_dynamic);
-	               }),
-	    std::async(std::launch::async, [&] {
-		    ufo::writePointCloudPCD(path / (config.output.filename + "_raycasting.pcd"),
-		                            cloud_raycasting);
-	    })};
-	for (auto& x : f) {
-		x.wait();
-	}
+	ufo::writePointCloudPCD(path / (config.output.filename + ".pcd"), cloud_static);
+	std::cout << "Clean map with " << cloud_static.size() << " points save in " << path / (config.output.filename + ".pcd") << '\n';
 	timing[6].stop();
-
 	timing.stop();
 
 	timing[2] = config.integration.timing;
