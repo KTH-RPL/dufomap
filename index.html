@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="./resources/elements/bootstrap.min.css">
     <link rel="stylesheet" href="./resources/elements/app.css">
     <script src="./resources/elements/app.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./resources/elements/utils/medium-zoom.min.js"></script>
+    <script src="./resources/elements/utils/jquery.min.js"></script>
+
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1070.0" data-gr-ext-installed="">
@@ -58,9 +63,9 @@
         <div class="row" id="affiliated">
             <div class="col-md-12 text-center">
                 <p>
-                    <sup>1</sup>KTH Royal Institute of Technology, <sup>2</sup>HKUST
-                    <br>
                     <sup>*</sup>Equal contribution
+                    <br>
+                    <sup>1</sup>KTH Royal Institute of Technology, <sup>2</sup>HKUST
                 </p>
             </div>
         </div>
@@ -140,7 +145,7 @@
         </div>
 
         
-        <div class="col-md-10 col-md-offset-1">
+        <!-- <div class="col-md-10 col-md-offset-1">
             <h3>
                 Section I-B: DUFOMap processing in KITTI 07 sequence (full map)
             </h3>
@@ -152,64 +157,113 @@
             <p class="text-justify">
                 Left: A map built using ground truth labels (dynamic points marked in yellow). Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.
             </p>
-        </div>
+        </div> -->
     </div>
 
     <div class="container">
         <div class="col-md-10 col-md-offset-1"  id="video-demo">
-            <h3>Interactive demo. Try yourself 😊 </h3>
+            <h3>Interactive demo in KITTI 07 sequence (full map). Try yourself 😊 </h3>
             <div class="cocoen" style="width: 100%;">
-            <video id="video-player1" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+            <video id="video-player1a" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
                 <source id="video-src1" src="./resources/videos/07_gt.mp4">
             </video>
-            <video id="video-player2" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+            <video id="video-player2a" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
                 <source id="video-src2" src="./resources/videos/07_dufomap.mp4">
             </video>
             </div>
-            <input id="progress-bar" type="range" min="0" max="100" step="1" value="0">
-            <button id="pause-play-button">Play</button>
+            <input id="progress-bar-a" type="range" min="0" max="100" step="1" value="0">
+            <button id="pause-play-button-a">Play</button>
             <p style="text-align: center;">Slide the bar to compare</p>
             <p style="text-align: left;">
                 Left: A map built using ground truth labels (dynamic points marked in yellow). <br>
                 Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.</p>
     </div>
-
+    <!-- <div class="container">
+        <div class="col-md-10 col-md-offset-1"  id="video-demo">
+            <h3>Interactive demo in KITTI 07 sequence (full map). Try yourself 😊 </h3>
+            <div class="cocoen" style="width: 100%;">
+            <video id="video-player1b" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+                <source id="video-src3" src="./resources/videos/mid360_raw.mp4">
+            </video>
+            <video id="video-player2b" loop muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
+                <source id="video-src4" src="./resources/videos/mid360_dufo.mp4">
+            </video>
+            </div>
+            <input id="progress-bar-b" type="range" min="0" max="100" step="1" value="0">
+            <button id="pause-play-button-b">Play</button>
+            <p style="text-align: center;">Slide the bar to compare</p>
+            <p style="text-align: left;">
+                Left: A map built using ground truth labels (dynamic points marked in yellow). <br>
+                Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.</p>
+    </div> -->
     <div class="col-md-10 col-md-offset-1">
         <h3>
             Section I-C: DUFOMap Ablation Study in RGB-D dataset
         </h3>
         <p class="text-center">
-            <img src="./resources/imgs/rpl_cup.png" class="center">
+            <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/rpl_cup.png" class="center">
+        </p>
+        <hr><br>
+        <!-- <p class="text-justify">
+            
+        </p> -->
+        <p class="text-center">
+            <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/tum_rgbd.png" class="center">
+        </p>
+        <p class="text-justify">
+            The influence of the sensor noise model is illustrated in another experiment. 
+            We do this experiment in a smaller-scale, indoor scenario, using RGB-D data to highlight that our method also works here. 
+            In this experiment, we use a voxel size of 0.01m. RGB-D sensors based on structured light and/or stereo are notoriously noisy at longer distances. 
+            Fig. 4(a) shows raw data from the TUM RGB-D SLAM dataset, featuring people moving around in an environment captured using a noisy RGB-D sensor (Kinect). 
+            The noise is especially noticeable by the heavy wall distortion with errors above 0.5m. 
+            In Fig. 4(b) to Fig. 4(c), we show the result of detecting dynamic points (yellow) with different parameter values for \(d_s\), that is, sensor noise, keeping \(d_p=1\). 
+            As can be seen, by accounting for large enough sensor noise (Fig. 4(c) and Fig. 4(d)), the false positive points decrease substantially. 
+            Too large \(d_s\) makes the method more conservative, but as long as there is enough and varied data, it might still work well, as demonstrated in Fig. 4(d).
         </p>
     </div>
 
-    <div class="row">
+    <!-- Section II: Quantitative Results -->
+    <div class="row"> 
         <div class="col-md-10 col-md-offset-1">
             <h2> Section II: Quantitative Results</h2>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h3>
-                Section II-A: Quantitative result in all KITTI sequence.
+                Section II-A: Quantitative result in all KITTI sequence
             </h3>
             <div class="row">
                 <p class="text-center">
-                    <img src="./resources/imgs/page_table_1.png" class="center">
+                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_1.png" class="center">
                 </p>
                 <p class="text-justify">
                     Table I presents the dynamic removal performance in all KITTI sequences. Our method achieves the highest performance in all but one case.
                 </p>
                 <p class="text-center">
-                    <img src="./resources/imgs/page_table_2.png" class="center">
+                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_2.png" class="center">
                 </p>
                 <p class="text-justify">
                     Table II shows the dynamic removal results on the dataset from the paper with different sensor setups. Our proposed method, DUFOMap, get high scores on both SA and DA by accurately detecting dynamic points. This enables the generation of complete as well as clean maps for downstream tasks.
                 </p>
             </div>
         </div>
+
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Section II-B: Runtime comparison and detailed breakdown
+            </h3>
+            <div class="row">
+                <p class="text-center">
+                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/Speed_runtime.png" class="center">                    
+                </p>
+                <p class="text-justify">
+                    Table III and Fig. 5 present present information on the run time of the different methods for two of the datasets, one with a 64-channel LiDAR (KITTI highway) and one with a 16-channel LiDAR (semi-indoor).
+                    In general, our method outperforms other methods in both dense and sparse sensor settings.
+                    A detailed breakdown of the execution time for our method is provided in Fig. 5. We observe that the ray-casting step, as expected, is the most computationally intensive.
+                </p>
+            </div>
+        </div>
     </div>
+
     
     <div class="col-md-10 col-md-offset-1">
         <hr><br>
@@ -227,44 +281,53 @@
         <script>
         Cocoen.parse(document.body);
         </script>
+
         <script>
-            var video = document.getElementById('video-player1');
-            var video2 = document.getElementById('video-player2');
-            var progressBar = document.getElementById('progress-bar');
-            var pausePlayButton = document.getElementById('pause-play-button');
+            function setupVideoPlayers(videoId1, videoId2, progressBarId, buttonId) {
+                var video1 = document.getElementById(videoId1);
+                var video2 = document.getElementById(videoId2);
+                var progressBar = document.getElementById(progressBarId);
+                var pausePlayButton = document.getElementById(buttonId);
 
-            video.addEventListener('loadedmetadata', function() {
-                progressBar.max = video.duration;
-            });
+                video1.addEventListener('loadedmetadata', function() {
+                    progressBar.max = video1.duration;
+                });
 
-            video.addEventListener('timeupdate', function() {
-                progressBar.value = video.currentTime;
-            });
+                video1.addEventListener('timeupdate', function() {
+                    progressBar.value = video1.currentTime;
+                });
 
-            progressBar.addEventListener('input', function() {
-                video.currentTime = progressBar.value;
-                video2.currentTime = progressBar.value;
-            });
+                progressBar.addEventListener('input', function() {
+                    video1.currentTime = progressBar.value;
+                    video2.currentTime = progressBar.value;
+                });
 
-            pausePlayButton.addEventListener('click', function() {
-                if (video.paused) {
-                    video.play();
-                    video2.play();
-                    pausePlayButton.textContent = "Pause";
-                } else {
-                    video.pause();
-                    video2.pause();
-                    pausePlayButton.textContent = "Play";
-                }
-            });
+                pausePlayButton.addEventListener('click', function() {
+                    if (video1.paused) {
+                        video1.play();
+                        video2.play();
+                        pausePlayButton.textContent = "Pause";
+                    } else {
+                        video1.pause();
+                        video2.pause();
+                        pausePlayButton.textContent = "Play";
+                    }
+                });
+            }
+            setupVideoPlayers('video-player1a', 'video-player2a', 'progress-bar-a', 'pause-play-button-a');
+            setupVideoPlayers('video-player1b', 'video-player2b', 'progress-bar-b', 'pause-play-button-b');
         </script>
     </div>
+
+    <script src="./resources/elements/utils/zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- <div class="col-md-10 col-md-offset-1">
         <hr><br>
     </div> -->
     <div id="divCheckbox" style="display: none;">
         <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=agMKxP88T4oPBUQf-tEi1jJvvgJ9YOvOwHxoiZWvaw4&cl=ffffff&w=a"></script>
-        </script>
+        <!-- <li>Open view&ensp;<a href="http://www.clustrmaps.com/map/Kin-zhang.github.io" title="Visit tracker for Kin-zhang.github.io">Map Viewer</a></li> -->
     </div>
 </body>
 
