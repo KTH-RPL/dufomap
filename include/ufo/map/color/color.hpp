@@ -56,9 +56,9 @@ namespace ufo
  *
  */
 struct Color {
-	color_t blue{};
-	color_t green{};
-	color_t red{};
+	color_t blue = 255;
+	color_t green = 255;
+	color_t red = 255;
 
 	constexpr Color() = default;
 

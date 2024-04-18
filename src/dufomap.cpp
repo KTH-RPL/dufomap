@@ -74,11 +74,11 @@ struct Config {
 
 	void read(toml::table tbl)
 	{
+		map.resolution = read(tbl["important"]["resolution"], map.resolution);
+		
 		dataset.first = read(tbl["dataset"]["first"], dataset.first);
 		dataset.last  = read(tbl["dataset"]["last"], dataset.last);
 		dataset.num   = read(tbl["dataset"]["num"], dataset.num);
-
-		map.resolution = read(tbl["map"]["resolution"], map.resolution);
 		map.levels     = read(tbl["map"]["levels"], map.levels);
 
 		auto dsm = read(tbl["integration"]["down_sampling_method"], std::string("none"));
@@ -94,16 +94,14 @@ struct Config {
 		integration.min_range = read(tbl["integration"]["min_range"], integration.min_range);
 		integration.max_range = read(tbl["integration"]["max_range"], integration.max_range);
 		integration.inflate_unknown =
-		    read(tbl["integration"]["inflate_unknown"], integration.inflate_unknown);
+		    read(tbl["important"]["inflate_unknown"], integration.inflate_unknown);
 		integration.inflate_unknown_compensation =
 		    read(tbl["integration"]["inflate_unknown_compensation"],
 		         integration.inflate_unknown_compensation);
 		integration.ray_passthrough_hits = read(tbl["integration"]["ray_passthrough_hits"],
 		                                        integration.ray_passthrough_hits);
 		integration.inflate_hits_dist =
-		    read(tbl["integration"]["inflate_hits_dist"], integration.inflate_hits_dist);
-		integration.early_stop_distance =
-		    read(tbl["integration"]["early_stop_distance"], integration.early_stop_distance);
+		    read(tbl["important"]["inflate_hits_dist"], integration.inflate_hits_dist);
 		integration.ray_casting_method = read(tbl["integration"]["simple_ray_casting"], true)
 		                                     ? ufo::RayCastingMethod::SIMPLE
 		                                     : ufo::RayCastingMethod::PROPER;
@@ -115,8 +113,7 @@ struct Config {
 		    read(tbl["integration"]["num_threads"], integration.num_threads);
 		integration.only_valid =
 		    read(tbl["integration"]["only_valid"], integration.only_valid);
-		integration.sliding_window_size =
-		    read(tbl["integration"]["sliding_window_size"], integration.sliding_window_size);
+			
 		propagate = read(tbl["integration"]["propagate"], propagate);
 
 		clustering.cluster = read(tbl["clustering"]["cluster"], clustering.cluster);
@@ -338,7 +335,7 @@ int main(int argc, char* argv[])
 	std::filesystem::path path(argv[1]);
 
 	auto config = readConfig(path);
-	std::cout << "Successfully read configuration.\n";
+	std::cout << "[LOG] Step 1: Successfully read configuration.... \n";
 	ufo::Map<ufo::MapType::SEEN_FREE | ufo::MapType::REFLECTION | ufo::MapType::LABEL> map(
 	    config.map.resolution, config.map.levels);
 	map.reserve(100'000'000);
@@ -362,7 +359,7 @@ int main(int argc, char* argv[])
 
 	ufo::PointCloudColor cloud_acc;
 
-	std::cout << "Starting Processing data from: " << path << '\n';
+	std::cout << "[LOG] Step 2: Starting Processing data from: " << path << '\n';
 	for (std::size_t i{}; std::string filename : pcds) {
 		++i;
 		timing.setTag("Total " + std::to_string(i) + " of " + std::to_string(pcds.size()) +
@@ -409,10 +406,10 @@ int main(int argc, char* argv[])
 
 	timing[6].start("write");
 	ufo::writePointCloudPCD(path / (config.output.filename + ".pcd"), cloud_static);
-	std::cout << "Clean map with " << cloud_static.size() << " points save in " << path / (config.output.filename + ".pcd") << '\n';
 	timing[6].stop();
 	timing.stop();
 
 	timing[2] = config.integration.timing;
 	timing.print(true, true, 2, 4);
+	std::cout << "[LOG]: Finished! ^v^.. Clean output map with " << cloud_static.size() << " points save in " << path / (config.output.filename + ".pcd") << '\n';
 }

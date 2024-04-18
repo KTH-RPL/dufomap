@@ -1,30 +1,34 @@
-[dataset]
-first = 0 # First pcd index
-last = -1 # Last pcd index (-1 equals all)
-num = -1  # Number of pcd files to read (-1 equals all)
 
-[map]
-resolution = 0.1 # In meters
-levels = 20      # Levels of the octree
+[important]
+resolution = 0.1            # voxel size (meters), v in the paper, default 0.1
+inflate_unknown = 1         # d_p in the paper, default 1
+inflate_hits_dist = 0.2     # d_s in the paper, default 0.2
+
+
+# ----------- No need to modify if you are not professional dufoer or ufoer.
+# ----------- Deeper Parameter for debugging potential better result --------
 
 [integration]
-inflate_unknown = 1
 inflate_unknown_compensation = true
-inflate_hits_dist = 0.2
-
+down_sampling_method = "center"       # ["none", "center", "centroid", "uniform"]
+max_range = -1                        # Maximum range to integrate
+only_valid = false                    # Only do ray casting for points within 'max_range'
 discretize = true
 hit_depth = 0                         # Level of the octree to integrate hits
 miss_depth = 0                        # Level of the octree to integrate misses
 ray_casting_depth = 0                 # Level of the octree to perform ray casting
-
-max_range = -1                        # Maximum range to integrate
-early_stop_distance = 0
 simple_ray_casting = false
 simple_ray_casting_factor = 1.0
 parallel = true                       # Use parallel execution for integration
 num_threads = 0                       # Number of threads to use, 8 times number of physical cores seems to be a good number and it is chosen if 0 is given
-only_valid = false                    # Only do ray casting for points within 'max_range'
-sliding_window_size = 0
+
+[map]
+levels = 20      # Levels of the octree
+
+[dataset]
+first = 0 # First pcd index
+last = -1 # Last pcd index (-1 equals all)
+num = -1  # Number of pcd files to read (-1 equals all)
 
 [printing]
 verbose = false
