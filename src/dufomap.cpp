@@ -54,7 +54,7 @@ struct Clustering {
 
 struct Printing {
 	bool verbose = true;
-	bool debug   = true;
+	bool debug   = false;
 };
 
 struct Output {
@@ -239,10 +239,10 @@ Config readConfig(std::filesystem::path path)
 {
 	Config config;
 	for (;;) {
-		if (std::filesystem::exists(path / "dufomap.toml")) {
+		if (std::filesystem::exists(path)) {
 			toml::table tbl;
 			try {
-				tbl = toml::parse_file((path / "dufomap.toml").string());
+				tbl = toml::parse_file((path).string());
 			} catch (toml::parse_error const& err) {
 				std::cerr << "Configuration parsing failed:\n" << err << '\n';
 				exit(1);
@@ -250,7 +250,7 @@ Config readConfig(std::filesystem::path path)
 
 			config.read(tbl);
 			if (config.printing.verbose) {
-				std::cout << "Found: " << (path / "dufomap.toml") << '\n';
+				std::cout << "Found: " << (path) << '\n';
 			}
 
 			break;
@@ -328,14 +328,19 @@ void cluster(Map& map, Clustering const& clustering)
 int main(int argc, char* argv[])
 {
 	if (1 >= argc) {
-		std::cout << "Usage: ./dufomap PATH\n";
+		std::cout << "[ERROR] Please running by: " << argv[0] << " [pcd_folder] [optional: config_file_path]";
 		return 0;
 	}
 
 	std::filesystem::path path(argv[1]);
+	std::string config_file_path;
+	if (argc > 2)
+		config_file_path = argv[2];
+	else
+		config_file_path = std::string(argv[1]) + "/dufomap.toml";
 
-	auto config = readConfig(path);
-	std::cout << "[LOG] Step 1: Successfully read configuration.... \n";
+	auto config = readConfig(std::filesystem::path(config_file_path));
+	std::cout << "[LOG] Step 1: Successfully read configuration from: " << config_file_path <<std::endl;
 	ufo::Map<ufo::MapType::SEEN_FREE | ufo::MapType::REFLECTION | ufo::MapType::LABEL> map(
 	    config.map.resolution, config.map.levels);
 	map.reserve(100'000'000);

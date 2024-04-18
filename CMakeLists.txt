@@ -76,8 +76,8 @@ target_compile_options(Map
 
 # add_subdirectory(src)
 
-add_executable(dufomap src/dufomap.cpp)
-set_target_properties(dufomap
+add_executable(dufomap_run src/dufomap.cpp)
+set_target_properties(dufomap_run
 	PROPERTIES
 	VERSION ${PROJECT_VERSION}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
@@ -85,12 +85,12 @@ set_target_properties(dufomap
 	CXX_STANDARD_REQUIRED YES
 	CXX_EXTENSIONS NO
 )
-target_link_libraries(dufomap PRIVATE UFO::Map)
-target_compile_features(dufomap
+target_link_libraries(dufomap_run PRIVATE UFO::Map)
+target_compile_features(dufomap_run
 	PUBLIC
 	cxx_std_20
 )
-target_compile_options(dufomap
+target_compile_options(dufomap_run
 	PRIVATE
 	# -Wall
 	# -Werror
