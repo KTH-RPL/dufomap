@@ -403,8 +403,12 @@ int main(int argc, char* argv[])
 	ufo::PointCloudColor cloud_static;
 
 	for (auto& p : cloud_acc) {
-		if (!map.seenFree(p))
+		if (!map.seenFree(p)){
+			// NOTE: change to white color, comment if you want to keep the original color
+			if (static_cast<ufo::Color&>(p) == ufo::Color{0, 0, 0})
+				static_cast<ufo::Color&>(p) = ufo::Color{255, 255, 255};
 			cloud_static.push_back(p);
+		}
 	}
 
 	timing[5].stop();

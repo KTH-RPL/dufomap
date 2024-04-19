@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "/usr/include/c++/10",
+                "${workspaceFolder}/ufomap/include",
+                "${workspaceFolder}/build/ufomap"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++-10",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
