@@ -1,13 +1,5 @@
 <p align="center">
   <h2 align="center">DUFOMap: Efficient Dynamic Awareness Mapping</h1>
-  <p align="center">
-    <a href="https://www.kth.se/profile/dduberg"><strong>Daniel Duberg</strong><sup>1,*</sup></a>&nbsp;&nbsp;&nbsp;
-    <a href="https://kin-zhang.github.io"><strong>Qingwen Zhang</strong><sup>1,*</sup></a>&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/MKJia"><strong>Mingkai Jia</strong><sup>2</sup></a>&nbsp;&nbsp;&nbsp;
-    <a href="https://www.kth.se/profile/patric"><strong>Patric Jensfelt</strong><sup>1</sup></a>&nbsp;&nbsp;&nbsp;
-    <br />
-    <sup>*</sup><strong>Co-first author</strong>&nbsp;&nbsp;&nbsp; <sup>1</sup><strong>KTH</strong>&nbsp;&nbsp;&nbsp; <sup>2</sup><strong>HKUST</strong>&nbsp;&nbsp;&nbsp;
-  </p>
 </p>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2403.01449)
@@ -70,24 +62,34 @@ This work was partially supported by the Wallenberg AI, Autonomous Systems and S
 
 The original DUFOMap code is from the fork repo: [UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap). 
 Feel free to explore below projects that use [ufomap](https://github.com/UnknownFreeOccupied/ufomap) (attach code links as follows):
-- [RA-L'24 DUFOMap, Dynamic Awareness]()
-- [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
 - [RA-L'20 UFOMap, Map Framework](https://github.com/UnknownFreeOccupied/ufomap)
+- [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
+- [RA-L'24 DUFOMap, Dynamic Awareness]()
 
 ### Citation
 
 Please cite our works if you find these useful for your research.
 
 ```
-@ARTICLE{daniel2024dufomap,
+@article{daniel2024dufomap,
   author={Duberg, Daniel and Zhang, Qingwen and Jia, MingKai and Jensfelt, Patric},
   journal={IEEE Robotics and Automation Letters}, 
-  title={DUFOMap: Efficient Dynamic Awareness Mapping}, 
+  title={{DUFOMap}: Efficient Dynamic Awareness Mapping}, 
   year={2024},
   volume={},
   number={},
   pages={1-8},
   doi={10.1109/LRA.2024.3387658}
+}
+@article{duberg2020ufomap,
+  author={Duberg, Daniel and Jensfelt, Patric},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={{UFOMap}: An Efficient Probabilistic 3D Mapping Framework That Embraces the Unknown}, 
+  year={2020},
+  volume={5},
+  number={4},
+  pages={6411-6418},
+  doi={10.1109/LRA.2020.3013861}
 }
 @inproceedings{zhang2023benchmark,
   author={Zhang, Qingwen and Duberg, Daniel and Geng, Ruoyu and Jia, Mingkai and Wang, Lujia and Jensfelt, Patric},
@@ -96,15 +98,5 @@ Please cite our works if you find these useful for your research.
   year={2023},
   pages={608-614},
   doi={10.1109/ITSC57777.2023.10422094}
-}
-@ARTICLE{duberg2020ufomap,
-  author={Duberg, Daniel and Jensfelt, Patric},
-  journal={IEEE Robotics and Automation Letters}, 
-  title={UFOMap: An Efficient Probabilistic 3D Mapping Framework That Embraces the Unknown}, 
-  year={2020},
-  volume={5},
-  number={4},
-  pages={6411-6418},
-  doi={10.1109/LRA.2020.3013861}
 }
 ```
