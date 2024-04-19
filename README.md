@@ -5,10 +5,12 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2403.01449)
 [![page](https://img.shields.io/badge/Web-Page-green)](https://KTH-RPL.github.io/dufomap) [video coming soon] [poster coming soon]. Accepted by RA-L'24.
 
-Quick Demo: Run with the **same parameter setting** without tuning for different sensor (e.g 16, 32, 64, and 128 channel LiDAR and Livox-series mid360), the following shows the data collected from: Leica-RTC360, 128-channel LiDAR and Livox-mid360 effect.
+Quick Demo: Run with the **same parameter setting** without tuning for different sensor (e.g 16, 32, 64, and 128 channel LiDAR and Livox-series mid360), the following shows the data collected from:
 
-| ![](assets/imgs/dufomap_leica.gif) | ![](assets/imgs/doals_train_128.gif) | ![](assets/imgs/two_floor_mid360.gif) |
+| Leica-RTC360 | 128-channel LiDAR | Livox-mid360 |
 | ------- | ------- | ------- |
+| ![](assets/imgs/dufomap_leica.gif) | ![](assets/imgs/doals_train_128.gif) | ![](assets/imgs/two_floor_mid360.gif) |
+<!-- | ------- | ------- | ------- | -->
 
 ## 0. Setup
 

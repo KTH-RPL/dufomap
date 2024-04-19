@@ -356,7 +356,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	std::ranges::sort(pcds);
-
+	// std::cout << config << std::endl;
 	pcds.resize(std::min(pcds.size(), config.dataset.num));
 
 	ufo::Timing timing;

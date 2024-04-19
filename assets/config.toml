@@ -10,10 +10,10 @@ inflate_hits_dist = 0.2     # d_s in the paper, default 0.2
 
 [integration]
 inflate_unknown_compensation = true
+ray_passthrough_hits = false
 down_sampling_method = "center"       # ["none", "center", "centroid", "uniform"]
 max_range = -1                        # Maximum range to integrate
 only_valid = false                    # Only do ray casting for points within 'max_range'
-discretize = true
 hit_depth = 0                         # Level of the octree to integrate hits
 miss_depth = 0                        # Level of the octree to integrate misses
 ray_casting_depth = 0                 # Level of the octree to perform ray casting
