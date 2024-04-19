@@ -1,5 +1,5 @@
-<p align="center">
-  <h2 align="center">DUFOMap: Efficient Dynamic Awareness Mapping</h1>
+<p>
+  <h1 align="center">DUFOMap: Efficient Dynamic Awareness Mapping</h1>
 </p>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2403.01449)
