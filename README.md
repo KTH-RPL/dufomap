@@ -15,8 +15,6 @@ Quick Demo: Run with the **same parameter setting** without tuning for different
 
 ### Environment
 
-Since Ranges (`std::range`) and `#include <concepts>` first existed in C++20 and GCC 10
-
 ```bash
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update && apt install gcc-10 g++-10
