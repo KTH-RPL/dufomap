@@ -12,15 +12,18 @@ Quick Demo: Run with the **same parameter setting** without tuning for different
 
 ## 0. Setup
 
-
-### Environment
-
 ```bash
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update && apt install gcc-10 g++-10
 sudo apt install libtbb-dev liblz4-dev
 ```
+
 Dockerfile will be soon available.
+
+Clone and init submodules:
+```bash
+git submodule update --init --recursive
+```
 
 ## 1. Build & Run
 

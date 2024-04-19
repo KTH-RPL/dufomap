@@ -1,0 +1,3 @@
+[submodule "ufomap"]
+	path = ufomap
+	url = https://github.com/UnknownFreeOccupied/ufomap
