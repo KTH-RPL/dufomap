@@ -60,9 +60,9 @@ This work was partially supported by the Wallenberg AI, Autonomous Systems and S
 
 The original DUFOMap code is from the fork repo: [UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap). 
 Feel free to explore below projects that use [ufomap](https://github.com/UnknownFreeOccupied/ufomap) (attach code links as follows):
-- [RA-L'20 UFOMap, Map Framework](https://github.com/UnknownFreeOccupied/ufomap)
-- [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
 - [RA-L'24 DUFOMap, Dynamic Awareness]()
+- [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
+- [RA-L'20 UFOMap, Mapping Framework](https://github.com/UnknownFreeOccupied/ufomap)
 
 ### Citation
 
