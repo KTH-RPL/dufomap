@@ -13,9 +13,8 @@ endif()
 
 add_subdirectory(ufomap)
 include_directories(${CMAKE_SOURCE_DIR}/ufomap)
-# add_subdirectory(src)
 
-add_executable(dufomap_run dufomap.cpp)
+add_executable(dufomap_run src/dufomap.cpp)
 set_target_properties(dufomap_run
 	PROPERTIES
 	VERSION ${PROJECT_VERSION}

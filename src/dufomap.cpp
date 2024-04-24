@@ -14,6 +14,7 @@
 
 // TOML
 #include "toml.hpp"
+#include "indicators.hpp"
 
 // STL
 #include <cstdio>
@@ -365,7 +366,20 @@ int main(int argc, char* argv[])
 	ufo::PointCloudColor cloud_acc;
 
 	std::cout << "[LOG] Step 2: Starting Processing data from: " << path << '\n';
+	indicators::show_console_cursor(false);
+	indicators::BlockProgressBar bar{
+		indicators::option::BarWidth{50},
+		indicators::option::Start{"["},
+		indicators::option::End{"]"},
+		indicators::option::PrefixText{"[LOG] Running dufomap "},
+		indicators::option::ForegroundColor{indicators::Color::white},
+		indicators::option::ShowElapsedTime{true},
+		indicators::option::ShowRemainingTime{true},
+		indicators::option::FontStyles{std::vector<indicators::FontStyle>{indicators::FontStyle::bold}}
+	};
+	
 	for (std::size_t i{}; std::string filename : pcds) {
+		bar.set_progress(100 * i / pcds.size());
 		++i;
 		timing.setTag("Total " + std::to_string(i) + " of " + std::to_string(pcds.size()) +
 		              " (" + std::to_string(100 * i / pcds.size()) + "%)");
@@ -386,7 +400,9 @@ int main(int argc, char* argv[])
 			timing.print(true, true, 2, 4);
 		}
 	}
-
+	indicators::show_console_cursor(true);
+	std::cout << "\033[0m\n[LOG] Step 3: Finished Processing data. Start saving map... " << std::endl;
+	// bar.is_completed();
 	if (!config.propagate) {
 		timing[3].start("Propagate");
 		map.propagateModified();
@@ -403,12 +419,8 @@ int main(int argc, char* argv[])
 	ufo::PointCloudColor cloud_static;
 
 	for (auto& p : cloud_acc) {
-		if (!map.seenFree(p)){
-			// NOTE: change to white color, comment if you want to keep the original color
-			if (static_cast<ufo::Color&>(p) == ufo::Color{0, 0, 0})
-				static_cast<ufo::Color&>(p) = ufo::Color{255, 255, 255};
+		if (!map.seenFree(p))
 			cloud_static.push_back(p);
-		}
 	}
 
 	timing[5].stop();

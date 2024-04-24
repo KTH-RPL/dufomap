@@ -37,8 +37,8 @@ cmake -B build -D CMAKE_CXX_COMPILER=g++-10 && cmake --build build
 Prepare Data: Teaser data (KITTI 00: 384.4Mb) can be downloaded via follow commands, more data detail can be found in the [dataset section](https://github.com/KTH-RPL/DynamicMap_Benchmark?tab=readme-ov-file#dataset--scripts) or format your own dataset follow [custom dataset section](https://github.com/KTH-RPL/DynamicMap_Benchmark/blob/master/scripts/README.md#custom-dataset).
 
 ```bash
-wget https://zenodo.org/records/8160051/files/00.zip
-unzip 00.zip -d data
+wget https://zenodo.org/records/8160051/files/00.zip -p data
+unzip data/00.zip -d data
 ```
 
 Run:
@@ -60,9 +60,8 @@ Please reference to [DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap
 
 Thanks to HKUST Ramlab's members: Bowen Yang, Lu Gan, Mingkai Tang, and Yingbing Chen, who help collect additional datasets. 
 
-This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program ([WASP](https://wasp-sweden.org/)) funded by the Knut and Alice Wallenberg Foundation
+This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program ([WASP](https://wasp-sweden.org/)) funded by the Knut and Alice Wallenberg Foundation including the WASP NEST PerCorSo.
 
-The original DUFOMap code is from the fork repo: [UnknownFreeOccupied/ufomap/tree/dufomap](https://github.com/UnknownFreeOccupied/ufomap/tree/dufomap). 
 Feel free to explore below projects that use [ufomap](https://github.com/UnknownFreeOccupied/ufomap) (attach code links as follows):
 - [RA-L'24 DUFOMap, Dynamic Awareness]()
 - [RA-L'23 SLICT, SLAM](https://github.com/brytsknguyen/slict)
