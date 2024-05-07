@@ -77,8 +77,8 @@ Please cite our works if you find these useful for your research.
   journal={IEEE Robotics and Automation Letters}, 
   title={{DUFOMap}: Efficient Dynamic Awareness Mapping}, 
   year={2024},
-  volume={},
-  number={},
+  volume={9},
+  number={6},
   pages={1-8},
   doi={10.1109/LRA.2024.3387658}
 }
