@@ -190,3 +190,33 @@ img {
   width: 100%;
   height: 100%;
 }
+
+#copyButton {
+  position: absolute;
+  top: 10;
+  right: 15px;
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  background-color: #ffffff;
+  font-size: medium;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  cursor: pointer;
+  z-index: 1;
+}
+
+pre {
+  position: relative;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+code {
+  font-family: monospace;
+  display: inline-block;
+  display: inline !important; /* 使用inline而不是block或inline-block */
+  white-space: pre !important; /* 强制保持原有格式，不换行 */
+}

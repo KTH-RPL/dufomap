@@ -176,92 +176,98 @@
             <p style="text-align: left;">
                 Left: A map built using ground truth labels (dynamic points marked in yellow). <br>
                 Right: Static map after DUFOMap after removing points classified as dynamic by DUFOMap.</p>
-    </div>
+        </div>
 
-    <div class="col-md-10 col-md-offset-1">
-        <h3>
-            Section I-C: DUFOMap Ablation Study in RGB-D dataset
-        </h3>
-        <p class="text-center">
-            <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/rpl_cup.png" class="center">
-        </p>
-        <hr><br>
-        <!-- <p class="text-justify">
-            
-        </p> -->
-        <p class="text-center">
-            <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/tum_rgbd.png" class="center">
-        </p>
-        <p class="text-justify">
-            The influence of the sensor noise model is illustrated in another experiment. 
-            We do this experiment in a smaller-scale, indoor scenario, using RGB-D data to highlight that our method also works here. 
-            In this experiment, we use a voxel size of 0.01m. RGB-D sensors based on structured light and/or stereo are notoriously noisy at longer distances. 
-            Fig. 4(a) shows raw data from the TUM RGB-D SLAM dataset, featuring people moving around in an environment captured using a noisy RGB-D sensor (Kinect). 
-            The noise is especially noticeable by the heavy wall distortion with errors above 0.5m. 
-            In Fig. 4(b) to Fig. 4(c), we show the result of detecting dynamic points (yellow) with different parameter values for \(d_s\), that is, sensor noise, keeping \(d_p=1\). 
-            As can be seen, by accounting for large enough sensor noise (Fig. 4(c) and Fig. 4(d)), the false positive points decrease substantially. 
-            Too large \(d_s\) makes the method more conservative, but as long as there is enough and varied data, it might still work well, as demonstrated in Fig. 4(d).
-        </p>
-    </div>
+        <div class="col-md-10 col-md-offset-1">
+            <h3>
+                Section I-C: DUFOMap Ablation Study in RGB-D dataset
+            </h3>
+            <p class="text-center">
+                <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/rpl_cup.png" class="center">
+            </p>
+            <hr><br>
+            <!-- <p class="text-justify">
+                
+            </p> -->
+            <p class="text-center">
+                <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/tum_rgbd.png" class="center">
+            </p>
+            <p class="text-justify">
+                The influence of the sensor noise model is illustrated in another experiment. 
+                We do this experiment in a smaller-scale, indoor scenario, using RGB-D data to highlight that our method also works here. 
+                In this experiment, we use a voxel size of 0.01m. RGB-D sensors based on structured light and/or stereo are notoriously noisy at longer distances. 
+                Fig. 4(a) shows raw data from the TUM RGB-D SLAM dataset, featuring people moving around in an environment captured using a noisy RGB-D sensor (Kinect). 
+                The noise is especially noticeable by the heavy wall distortion with errors above 0.5m. 
+                In Fig. 4(b) to Fig. 4(c), we show the result of detecting dynamic points (yellow) with different parameter values for \(d_s\), that is, sensor noise, keeping \(d_p=1\). 
+                As can be seen, by accounting for large enough sensor noise (Fig. 4(c) and Fig. 4(d)), the false positive points decrease substantially. 
+                Too large \(d_s\) makes the method more conservative, but as long as there is enough and varied data, it might still work well, as demonstrated in Fig. 4(d).
+            </p>
+        </div>
 
-    <!-- Section II: Quantitative Results -->
-    <div class="row"> 
+        <!-- Section II: Quantitative Results -->
+        <!-- <div class="row">  -->
         <div class="col-md-10 col-md-offset-1">
             <h2> Section II: Quantitative Results</h2>
-        </div>
-        <div class="col-md-10 col-md-offset-1">
             <h3>
                 Section II-A: Quantitative result in all KITTI sequence
             </h3>
-            <div class="row">
-                <p class="text-center">
-                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_1.png" class="center">
-                </p>
-                <p class="text-justify">
-                    Table I presents the dynamic removal performance in all KITTI sequences. Our method achieves the highest performance in all but one case.
-                </p>
-                <p class="text-center">
-                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_2.png" class="center">
-                </p>
-                <p class="text-justify">
-                    Table II shows the dynamic removal results on the dataset from the paper with different sensor setups. Our proposed method, DUFOMap, get high scores on both SA and DA by accurately detecting dynamic points. This enables the generation of complete as well as clean maps for downstream tasks.
-                </p>
-            </div>
-        </div>
+            <p class="text-center">
+                <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_1.png" class="center">
+            </p>
+            <p class="text-justify">
+                Table I presents the dynamic removal performance in all KITTI sequences. Our method achieves the highest performance in all but one case.
+            </p>
+            <p class="text-center">
+                <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/page_table_2.png" class="center">
+            </p>
+            <p class="text-justify">
+                Table II shows the dynamic removal results on the dataset from the paper with different sensor setups. Our proposed method, DUFOMap, get high scores on both SA and DA by accurately detecting dynamic points. This enables the generation of complete as well as clean maps for downstream tasks.
+            </p>
 
-        <div class="col-md-10 col-md-offset-1">
             <h3>
                 Section II-B: Runtime comparison and detailed breakdown
             </h3>
-            <div class="row">
-                <p class="text-center">
-                    <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/Speed_runtime.png" class="center">                    
-                </p>
-                <p class="text-justify">
-                    Table III and Fig. 5 present present information on the run time of the different methods for two of the datasets, one with a 64-channel LiDAR (KITTI highway) and one with a 16-channel LiDAR (semi-indoor).
-                    In general, our method outperforms other methods in both dense and sparse sensor settings.
-                    A detailed breakdown of the execution time for our method is provided in Fig. 5. We observe that the ray-casting step, as expected, is the most computationally intensive.
-                </p>
-            </div>
+            <p class="text-center">
+                <img style="cursor: zoom-in;" data-zoomable src="./resources/imgs/Speed_runtime.png" class="center">                    
+            </p>
+            <p class="text-justify">
+                Table III and Fig. 5 present present information on the run time of the different methods for two of the datasets, one with a 64-channel LiDAR (KITTI highway) and one with a 16-channel LiDAR (semi-indoor).
+                In general, our method outperforms other methods in both dense and sparse sensor settings.
+                A detailed breakdown of the execution time for our method is provided in Fig. 5. We observe that the ray-casting step, as expected, is the most computationally intensive.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="container" id="BibTex">
+        <div class="col-md-10 col-md-offset-1">
+            <h3 class="title">BibTeX</h3>
+            <p> If you find our work useful in your research, please consider citing:</p>
+            <button id="copyButton" >Copy</button>
+            <pre><code id="bibtexCode">@article{daniel2024dufomap,
+    author={Duberg, Daniel and Zhang, Qingwen and Jia, Mingkai and Jensfelt, Patric},
+    journal={IEEE Robotics and Automation Letters}, 
+    title={{DUFOMap}: Efficient Dynamic Awareness Mapping}, 
+    year={2024},
+    volume={9},
+    number={6},
+    pages={5038-5045},
+    doi={10.1109/LRA.2024.3387658}
+}
+</code>
+</pre>
+            <hr><br>
         </div>
     </div>
 
-    
-    <div class="col-md-10 col-md-offset-1">
-        <hr><br>
-    </div>
-
-
+    <script src="./resources/elements/utils/zoom.js"></script>
     <div class="container">
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="./resources/elements/cocoen/interactive_demo.js"></script>
         <script src="./resources/elements/cocoen/cocoen.js"></script>
         <script src="./resources/elements/cocoen/glide.min.js"></script>
         <script>
-        Cocoen.parse(document.body);
+            Cocoen.parse(document.body);
         </script>
         <script>
             var video = document.getElementById('video-player1');
@@ -296,7 +302,6 @@
         </script>
     </div>
 
-    <script src="./resources/elements/utils/zoom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- <div class="col-md-10 col-md-offset-1">
