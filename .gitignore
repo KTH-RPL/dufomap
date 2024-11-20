@@ -58,3 +58,5 @@ docs/html/*
 # coverage report
 coverage_report/*
 .coverage/
+
+*.pcd
