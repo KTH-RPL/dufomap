@@ -326,6 +326,15 @@ void cluster(Map& map, Clustering const& clustering)
 	}
 }
 
+template <class PointCloud>
+void filterminDistance(PointCloud& cloud, ufo::Point origin, float min_distance)
+{
+	float sqrt_dist = min_distance * min_distance;
+	std::erase_if(cloud, [origin, sqrt_dist](auto const& point) {
+		return origin.squaredDistance(point) < sqrt_dist;
+	});
+}
+
 int main(int argc, char* argv[])
 {
 	if (1 >= argc) {
@@ -389,6 +398,9 @@ int main(int argc, char* argv[])
 		timing[1].start("Read");
 		ufo::readPointCloudPCD(path / "pcd" / filename, cloud, viewpoint);
 		timing[1].stop();
+
+		// NOTE(Qingwen): lots of user facing about ego points inside data, we filterminDistance around ego agent.
+		filterminDistance(cloud, viewpoint.translation, config.integration.min_range);
 
 		cloud_acc.insert(std::end(cloud_acc), std::cbegin(cloud), std::cend(cloud));
 

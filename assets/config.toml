@@ -12,6 +12,7 @@ inflate_hits_dist = 0.2     # d_s in the paper, default 0.2
 inflate_unknown_compensation = true
 ray_passthrough_hits = false
 down_sampling_method = "center"       # ["none", "center", "centroid", "uniform"]
+min_range = 0.2                       # For filter out the ego points (some SLAM algorithm will include a pose point etc.
 max_range = -1                        # Maximum range to integrate
 only_valid = false                    # Only do ray casting for points within 'max_range'
 hit_depth = 0                         # Level of the octree to integrate hits

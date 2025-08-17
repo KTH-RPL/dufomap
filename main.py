@@ -22,6 +22,10 @@ def inv_pose_matrix(pose):
     inv_pose[:3, :3] = pose[:3, :3].T
     inv_pose[:3, 3] = -pose[:3, :3].T.dot(pose[:3, 3])
     return inv_pose
+
+MIN_AXIS_RANGE = 0.2 # HARD CODED: remove ego vehicle points
+MAX_AXIS_RANGE = 50 # HARD CODED: remove far away points
+
 class DynamicMapData:
     def __init__(self, directory):
         self.scene_id = directory.split("/")[-1]
@@ -44,6 +48,7 @@ class DynamicMapData:
 
 def main_vis(
     data_dir: str = "/home/kin/data/00",
+    voxel_map: bool = True, # output voxel-level map or raw point-level.
 ):
     dataset = DynamicMapData(data_dir)
 
@@ -54,17 +59,20 @@ def main_vis(
         data = dataset[data_id]
         now_scene_id = data['scene_id']
         pbar.set_description(f"id: {data_id}, scene_id: {now_scene_id}, timestamp: {data['timestamp']}")
-
+        norm_pc0 = np.linalg.norm(data['pc'][:, :3] - data['pose'][:3], axis=1)
+        range_mask = (
+                (norm_pc0>MIN_AXIS_RANGE) & 
+                (norm_pc0<MAX_AXIS_RANGE)
+        )
         # STEP 1: integrate point cloud into dufomap
-        mydufo.run(data['pc'], data['pose'], cloud_transform = False) # since pc already in world frame
+        mydufo.run(data['pc'][range_mask], data['pose'], cloud_transform = False)
+        # STEP 1: integrate point cloud into dufomap
         cloud_acc = np.concatenate((cloud_acc, data['pc']), axis=0)
     
     # STEP 2: propagate
     mydufo.oncePropagateCluster(if_propagate=True, if_cluster=False)
-    # STEP 3: Map results
-    mydufo.outputMap(cloud_acc, voxel_map=False)
-    # NOTE(Qingwen): You can also save voxeled map directly based on the resolution we set before:
-    # mydufo.outputMap(cloud_acc, voxel_map=True)
+    # STEP 3: Map results; You can save the voxel map directly based on the resolution we set before:
+    mydufo.outputMap(cloud_acc, voxel_map=voxel_map)
     
     mydufo.printDetailTiming()
 
