@@ -3,7 +3,9 @@
 </p>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2403.01449-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2403.01449)
-[![page](https://img.shields.io/badge/Project-Page-green)](https://KTH-RPL.github.io/dufomap) [![poster](https://img.shields.io/badge/RAL2024|Poster-6495ed?style=flat&logo=Shotcut&logoColor=wihte)](https://mit-spark.github.io/Longterm-Perception-WS/assets/proceedings/DUFOMap/poster.pdf) [video coming soon]
+[![page](https://img.shields.io/badge/Project-Page-green)](https://KTH-RPL.github.io/dufomap)
+[![poster](https://img.shields.io/badge/RAL2024|Poster-6495ed?style=flat&logo=Shotcut&logoColor=wihte)](https://mit-spark.github.io/Longterm-Perception-WS/assets/proceedings/DUFOMap/poster.pdf)
+[![video](https://img.shields.io/badge/video-YouTube-FF0000?logo=youtube&logoColor=white)](https://youtu.be/isDnAVoVD5M)
 
 Quick Demo: Run with the **same parameter setting** without tuning for different sensor (e.g 16, 32, 64, and 128 channel LiDAR and Livox-series mid360), the following shows the data collected from:
 
@@ -12,19 +14,27 @@ Quick Demo: Run with the **same parameter setting** without tuning for different
 | ![](assets/imgs/dufomap_leica.gif) | ![](assets/imgs/doals_train_128.gif) | ![](assets/imgs/two_floor_mid360.gif) |
 <!-- | ------- | ------- | ------- | -->
 
-🚀 2024-11-20: Update dufomap Python API from [SeFlow](https://github.com/KTH-RPL/SeFlow) try it now! `pip install dufomap` and run `python main.py --data_dir data/00` to get the cleaned map directly. Support all >=Python 3.8 in Windows and Linux. Please extract your own data to unified format first follow [this wiki page](https://kth-rpl.github.io/DynamicMap_Benchmark/data/creation/#custom-data).
-
-## 0. Setup
-
-```bash
-sudo apt update && sudo apt install gcc-10 g++-10
-sudo apt install libtbb-dev liblz4-dev
-```
+🚀 2024-11-20: Update dufomap Python API from [SeFlow](https://github.com/KTH-RPL/SeFlow) try it now! `pip install dufomap` and run `python main.py --data_dir data/00` to get the cleaned map directly. Support all >=Python 3.8 in Windows and Linux. Please extract your own data to **the unified format** first follow [this wiki page](https://kth-rpl.github.io/DynamicMap_Benchmark/data/creation/#custom-data).
 
 
 Clone quickly and init submodules:
 ```bash
 git clone --recursive -b main --single-branch https://github.com/KTH-RPL/dufomap.git
+
+
+# The easiest way to run DUFOMap:
+pip install dufomap
+python main.py --data_dir data/00
+```
+
+
+### Dependencies
+
+If you want to compile the C++ source version, please install the following dependencies:
+
+```bash
+sudo apt update && sudo apt install gcc-10 g++-10
+sudo apt install libtbb-dev liblz4-dev
 ```
 
 Or you can directly build docker image through our [Dockerfile](Dockerfile):
@@ -32,7 +42,7 @@ Or you can directly build docker image through our [Dockerfile](Dockerfile):
 docker build -t dufomap .
 ```
 
-## 1. Build & Run
+### 1. Build & Run
 
 Build:
 
